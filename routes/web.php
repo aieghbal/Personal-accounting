@@ -4,7 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Auth\VerifyResetCodeController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -24,8 +23,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('/verify-reset-code', [VerifyResetCodeController::class, 'showForm'])->name('password.verify.form');
-Route::post('/verify-reset-code', [VerifyResetCodeController::class, 'verify'])->name('password.verify');
 
 require __DIR__.'/auth.php';
